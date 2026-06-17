@@ -147,7 +147,7 @@ export function LandingPage() {
   );
 
   return (
-    <main className="relative isolate overflow-hidden bg-background text-white">
+    <main className="relative isolate overflow-hidden bg-background/78 text-white">
       <div className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-px bg-white/5">
         <motion.div
           className="h-full bg-gradient-to-r from-transparent via-gold to-transparent"
@@ -157,9 +157,9 @@ export function LandingPage() {
 
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-0 bg-cover bg-[position:62%_center] bg-no-repeat sm:bg-center"
+        className="pointer-events-none fixed inset-0 z-0 bg-cover bg-[position:58%_center] bg-no-repeat sm:bg-center"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(7,17,31,0.68) 0%, rgba(7,17,31,0.84) 58%, rgba(7,17,31,0.94) 100%), linear-gradient(90deg, rgba(7,17,31,0.94) 0%, rgba(7,17,31,0.68) 48%, rgba(7,17,31,0.84) 100%), url(${siteConfig.images.office})`
+          backgroundImage: `linear-gradient(180deg, rgba(7,17,31,0.5) 0%, rgba(7,17,31,0.7) 58%, rgba(7,17,31,0.82) 100%), linear-gradient(90deg, rgba(7,17,31,0.82) 0%, rgba(7,17,31,0.5) 48%, rgba(7,17,31,0.72) 100%), url(${siteConfig.images.office})`
         }}
       />
       <div
@@ -175,16 +175,16 @@ export function LandingPage() {
             : "bg-transparent"
         )}
       >
-        <nav className="container flex h-20 items-center justify-between sm:h-24 lg:h-28">
+        <nav className="container flex h-16 items-center justify-between sm:h-24 lg:h-28">
           <a href="#inicio" className="group flex min-w-0 items-center gap-3" aria-label={siteConfig.name}>
-            <span className="relative flex h-16 w-36 shrink-0 items-center justify-center overflow-visible sm:h-20 sm:w-52 lg:h-24 lg:w-64">
+            <span className="relative flex h-12 w-28 shrink-0 items-center justify-center overflow-visible sm:h-20 sm:w-52 lg:h-24 lg:w-64">
               <ImageFallback
                 src={siteConfig.images.logo}
                 alt="Logo Michele Nogueira Morais"
                 sizes="(max-width: 640px) 144px, (max-width: 1024px) 208px, 256px"
                 fill
                 className="object-contain"
-                fallbackClassName="h-16 w-36 sm:h-20 sm:w-52 lg:h-24 lg:w-64"
+                fallbackClassName="h-12 w-28 sm:h-20 sm:w-52 lg:h-24 lg:w-64"
                 fallbackLabel="MNM"
               />
             </span>
@@ -227,7 +227,7 @@ export function LandingPage() {
 
         {menuOpen ? (
           <div className="container pb-4 lg:hidden">
-            <div className="glass-panel grid max-h-[calc(100vh-5rem)] gap-1 overflow-y-auto rounded-md p-2">
+            <div className="glass-panel grid max-h-[calc(100svh-4.5rem)] gap-1 overflow-y-auto rounded-md p-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
               {mobileNav}
               <Button asChild className="mt-2 w-full">
                 <a href={whatsappHref} target="_blank" rel="noreferrer">
@@ -239,43 +239,43 @@ export function LandingPage() {
         ) : null}
       </header>
 
-      <section id="inicio" className="noise relative z-10 flex min-h-screen items-center overflow-hidden pt-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/18 to-background/72" />
+      <section id="inicio" className="noise relative z-10 flex min-h-[100svh] items-center overflow-hidden pt-20 sm:pt-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/12 to-background/58" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_34%,rgba(92,119,148,0.18),transparent_32rem)]" />
-        <div className="soft-parallax absolute left-1/2 top-24 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full border border-gold/10 bg-gold/[0.045] blur-3xl" />
+        <div className="soft-parallax absolute left-1/2 top-24 h-[18rem] w-[18rem] -translate-x-1/2 rounded-full border border-gold/10 bg-gold/[0.035] blur-3xl sm:h-[28rem] sm:w-[28rem]" />
 
         <div className="container relative z-10">
           <motion.div
             variants={stagger}
             initial="hidden"
             animate="visible"
-            className="mx-auto flex min-h-[calc(100vh-8rem)] max-w-6xl flex-col items-center justify-center pb-20 text-center"
+            className="mx-auto flex min-h-[calc(100svh-5rem)] max-w-6xl flex-col items-center justify-center pb-10 text-center sm:min-h-[calc(100vh-8rem)] sm:pb-20"
           >
             <motion.p
               variants={fadeUp}
-              className="mb-5 font-sans text-[11px] font-medium uppercase tracking-[0.34em] text-white/52"
+              className="mb-3 max-w-[18rem] font-sans text-[10px] font-medium uppercase leading-5 tracking-[0.14em] text-white/62 sm:mb-5 sm:max-w-none sm:text-[11px] sm:tracking-[0.34em]"
             >
               OAB/SP 235.717 · Consultoria Jurídica Estratégica
             </motion.p>
             <motion.h1
               variants={fadeUp}
-              className="max-w-[1320px] font-display text-[clamp(34px,7.4vw,112px)] font-bold leading-[0.92] tracking-[-0.055em] text-white"
+              className="text-balance max-w-[1320px] font-display text-[2.2rem] font-bold leading-[1.03] tracking-normal text-white min-[380px]:text-[2.45rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[112px]"
             >
-              <span className="block whitespace-nowrap">
+              <span className="block sm:whitespace-nowrap">
                 Advocacia <span className="text-gold">ESTRATÉGICA</span>
               </span>
-              <span className="block whitespace-nowrap">para decisões de alto valor.</span>
+              <span className="block sm:whitespace-nowrap">para decisões de alto valor.</span>
             </motion.h1>
             <motion.p
               variants={fadeUp}
-              className="mt-6 max-w-3xl font-sans text-base font-normal leading-[1.8] text-white/68 sm:text-xl"
+              className="mt-4 max-w-3xl font-sans text-[15px] font-normal leading-7 text-white/76 sm:mt-6 sm:text-xl sm:leading-[1.8]"
             >
               Um escritório jurídico em São Paulo para pessoas, profissionais e empresas que
               buscam orientação técnica, proteção de direitos e segurança antes de decisões
               relevantes.
             </motion.p>
-            <motion.div variants={fadeUp} className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-              <Button asChild size="lg">
+            <motion.div variants={fadeUp} className="mt-6 flex w-full max-w-sm flex-col items-stretch gap-3 sm:mt-10 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:gap-4">
+              <Button asChild size="lg" className="w-full sm:w-auto">
                 <a href={whatsappHref} target="_blank" rel="noreferrer">
                   Iniciar atendimento
                   <ArrowUpRight className="h-4 w-4" />
@@ -283,7 +283,7 @@ export function LandingPage() {
               </Button>
               <a
                 href="#sobre"
-                className="group inline-flex items-center gap-2 font-sans text-sm font-medium text-white/62 transition hover:text-white"
+                className="group inline-flex justify-center gap-2 px-4 py-2 font-sans text-sm font-medium text-white/68 transition hover:text-white sm:items-center"
               >
                 Conhecer o escritório
                 <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1" />
@@ -293,7 +293,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section className="relative z-10 border-y border-white/10 bg-background/35 py-6 backdrop-blur-[2px]">
+      <section className="relative z-10 border-y border-white/10 bg-background/24 py-5 backdrop-blur-[2px] sm:py-6">
         <div className="container">
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {institutionalMetrics.map((metric) => (
@@ -490,7 +490,7 @@ export function LandingPage() {
         </div>
       </Section>
 
-      <section id="resultados" className="relative z-10 overflow-hidden border-y border-white/10 py-20 sm:py-28 lg:py-36">
+      <section id="resultados" className="relative z-10 overflow-hidden border-y border-white/10 py-14 sm:py-28 lg:py-36">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(92,119,148,0.16),transparent_34rem)]" />
         <div className="container relative">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
@@ -498,7 +498,7 @@ export function LandingPage() {
               <p className="font-sans text-xs font-medium uppercase tracking-[0.28em] text-gold">
                 Casos, resultados e reconhecimento
               </p>
-              <h2 className="mt-5 max-w-4xl font-display text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl">
+              <h2 className="mt-5 max-w-4xl font-display text-3xl font-semibold leading-[1.08] tracking-normal text-white sm:text-6xl sm:leading-[1.02]">
                 Autoridade institucional com registros públicos e entregáveis concretos.
               </h2>
             </div>
@@ -599,7 +599,7 @@ export function LandingPage() {
             <p className="font-sans text-xs font-medium uppercase tracking-[0.28em] text-gold/85">
               Atendimento institucional
             </p>
-            <h2 className="mt-5 max-w-3xl font-display text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl">
+            <h2 className="mt-5 max-w-3xl font-display text-3xl font-semibold leading-[1.08] tracking-normal text-white sm:text-6xl sm:leading-[1.02]">
               Fale com a advocacia e organize sua estratégia.
             </h2>
             <p className="mt-6 max-w-2xl font-sans text-base leading-[1.8] text-white/62">
@@ -692,13 +692,13 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="relative z-10 py-20 sm:py-28 lg:py-36">
+    <section id={id} className="relative z-10 py-14 sm:py-28 lg:py-36">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       <div className="container">
         <div className="gsap-reveal mb-10 grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <p className="font-sans text-xs font-medium uppercase tracking-[0.28em] text-gold">{eyebrow}</p>
-            <h2 className="text-balance mt-5 font-display text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl">
+            <h2 className="text-balance mt-5 font-display text-3xl font-semibold leading-[1.08] tracking-normal text-white sm:text-6xl sm:leading-[1.02]">
               {title}
             </h2>
           </div>

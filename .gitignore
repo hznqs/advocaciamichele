@@ -1,9 +1,39 @@
-.next
-node_modules
-out
-dist
-*.log
+# Dependencies
+node_modules/
+
+# Build output and caches
+.next/
+out/
+dist/
+coverage/
+.turbo/
 tsconfig.tsbuildinfo
+
+# Logs and local debug output
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables and local secrets
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
+!.env.*.example
+
+# Deployment and machine-local config
+.vercel/
+.netlify/
+.wrangler/
+.DS_Store
+Thumbs.db
+
+# Private keys and certificates
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+*.crt
+*.cer

@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+set -eu
+
+blocked_paths='(^|/)(\.env($|\.)|.*\.(pem|key|p8|p12|pfx|crt|cer|log)$|\.vercel/|\.netlify/|\.wrangler/)'
+secret_patterns='(DATABASE_URL|DIRECT_URL|PRIVATE_KEY|CLIENT_SECRET|API_KEY|ACCESS_TOKEN|REFRESH_TOKEN|AUTH_TOKEN|SECRET_KEY|SUPABASE_SERVICE_ROLE|JWT_SECRET|STRIPE_SECRET|GITHUB_TOKEN|sk-[A-Za-z0-9_-]{20,})'
+
+staged_files="$(git diff --cached --name-only --diff-filter=ACMR)"
+
+if [ -z "$staged_files" ]; then
+  exit 0
+fi
+
+blocked_file="$(printf '%s\n' "$staged_files" | grep -E "$blocked_paths" || true)"
+if [ -n "$blocked_file" ]; then
+  echo "Commit bloqueado: arquivo sensivel ou local esta staged."
+  printf '%s\n' "$blocked_file" | sed 's/^/ - /'
+  echo "Remova do stage com: git restore --staged <arquivo>"
+  exit 1
+fi
+
+matched_file=""
+for file in $staged_files; do
+  case "$file" in
+    .githooks/pre-commit)
+      continue
+      ;;
+  esac
+
+  if [ -f "$file" ] && git show ":$file" | grep -Eiq "$secret_patterns"; then
+    matched_file="$file"
+    break
+  fi
+done
+
+if [ -n "$matched_file" ]; then
+  echo "Commit bloqueado: possivel segredo encontrado em arquivo staged."
+  echo "Arquivo: $matched_file"
+  echo "Revise o arquivo e use variaveis de ambiente ou placeholders seguros."
+  exit 1
+fi
+
+exit 0
